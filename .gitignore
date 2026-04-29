@@ -1,0 +1,6 @@
+node_modules/
+build/
+.direnv/
+.env.local
+.mcp.json
+.claude/

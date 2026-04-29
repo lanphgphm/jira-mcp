@@ -1,0 +1,26 @@
+{
+  "name": "jira-mcp",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "MCP server for Jira daily standup",
+  "main": "build/index.js",
+  "bin": {
+    "jira-mcp": "build/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "start": "node build/index.js"
+  },
+  "keywords": ["mcp", "jira"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@types/node": "^25.6.0",
+    "typescript": "^6.0.3"
+  }
+}
