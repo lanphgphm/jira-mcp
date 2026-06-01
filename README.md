@@ -10,6 +10,7 @@ MCP server that wraps Jira for daily standup assistance. Query your tickets, add
 | `get_issue` | Get issue details with description and comments |
 | `add_comment` | Add a comment to an issue |
 | `transition_issue` | Move issue to a different status |
+| `set_priority` | Change issue priority |
 | `standup_summary` | Generate daily standup summary |
 | `search_issues` | Run custom JQL queries |
 
@@ -79,6 +80,7 @@ Exit and restart Claude Code, then verify with `/mcp`.
 - "Show me details for PROJ-123"
 - "Add a comment to PROJ-123 saying I'm blocked on code review"
 - "Move PROJ-123 to In Progress"
+- "Set PROJ-123 priority to High"
 - "Search for bugs in the API project"
 
 ## Development

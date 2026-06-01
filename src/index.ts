@@ -172,6 +172,34 @@ server.tool(
   }
 );
 
+// Tool: set priority
+server.tool(
+  "set_priority",
+  "Change the priority of a Jira issue",
+  {
+    issueKey: z.string().describe("Issue key (e.g. PROJ-123)"),
+    priority: z.string().describe("Priority name (e.g. 'Highest', 'High', 'Medium', 'Low', 'Lowest')"),
+  },
+  async ({ issueKey, priority }) => {
+    // First, get available priorities
+    const priorities = await jiraFetch("/priority");
+    const target = (priorities as { id: string; name: string }[]).find(
+      (p) => p.name.toLowerCase() === priority.toLowerCase()
+    );
+    if (!target) {
+      const available = (priorities as { name: string }[]).map((p) => p.name).join(", ");
+      return { content: [{ type: "text", text: `Priority "${priority}" not found. Available: ${available}` }] };
+    }
+    await jiraFetch(`/issue/${issueKey}`, {
+      method: "PUT",
+      body: JSON.stringify({
+        fields: { priority: { id: target.id } },
+      }),
+    });
+    return { content: [{ type: "text", text: `${issueKey} priority set to ${priority}` }] };
+  }
+);
+
 // Tool: standup summary
 server.tool(
   "standup_summary",
